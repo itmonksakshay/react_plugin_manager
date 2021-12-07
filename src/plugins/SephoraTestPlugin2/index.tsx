@@ -1,9 +1,10 @@
-import React from "react";
+import * as React from 'react';
 import { IPlugin, PluginStore } from "react-pluggable";
-import App from './app';
 
-class PluginManager implements IPlugin {
-    namespace = "PluginManager";
+
+ class SephoraTestPlugin2 implements IPlugin {
+
+    namespace = "SephoraTest2";
 
     pluginStore!: PluginStore;
 
@@ -18,24 +19,24 @@ class PluginManager implements IPlugin {
         this.pluginStore = pluginStore;
     }
 
-    AppComponent = () => {
-        return <App/>;
+    PluginComponent = () => {
+        return (<h2>Sephora Plugin 2</h2>);
     };
 
     activate(): void {
         this.pluginStore.executeFunction(
             "Renderer.add",
-            "Plugin.manager",
-            this.AppComponent
+            "SephoraTest2",
+            this.PluginComponent
         );
     }
     deactivate(): void {
         this.pluginStore.executeFunction(
             "Renderer.remove",
-            "Plugin.manager",
-            this.AppComponent
+            "SephoraTest2",
+            this.PluginComponent
         );
     }
 }
 
-export default PluginManager;
+export default new  SephoraTestPlugin2;

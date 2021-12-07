@@ -25,17 +25,17 @@ class TodoPlugin implements IPlugin {
   activate(): void {
       this.pluginStore.executeFunction(
         "Renderer.add",
-        "Todo.todos",
+        "Todo",
         this.TodoComponent
       );
   }
   deactivate(): void {
     this.pluginStore.executeFunction(
       "Renderer.remove",
-      "Todo.todos",
+      "Todo",
       this.TodoComponent
     );
   }
 }
 
-export default TodoPlugin;
+export default new TodoPlugin;

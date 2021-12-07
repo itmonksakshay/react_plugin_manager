@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { IPlugin, PluginStore } from "react-pluggable";
-import Root from "./app/root";
 
 
- class SephoraTestPlugin implements IPlugin {
+class SephoraTestPlugin3 implements IPlugin {
 
-    namespace = "SephoraTest";
+    namespace = "SephoraTest3";
 
     pluginStore!: PluginStore;
 
@@ -21,23 +20,23 @@ import Root from "./app/root";
     }
 
     PluginComponent = () => {
-        return (<Root/>);
+        return (<h2>Sephora Plugin 3</h2>);
     };
 
     activate(): void {
-            this.pluginStore.executeFunction(
-                "Renderer.add",
-                "SephoraTest",
-                this.PluginComponent
-            );
+        this.pluginStore.executeFunction(
+            "Renderer.add",
+            "SephoraTest3",
+            this.PluginComponent
+        );
     }
     deactivate(): void {
         this.pluginStore.executeFunction(
             "Renderer.remove",
-            "SephoraTest",
+            "SephoraTest3",
             this.PluginComponent
         );
     }
 }
 
-export default new SephoraTestPlugin;
+export default new SephoraTestPlugin3;

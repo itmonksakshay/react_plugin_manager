@@ -1,31 +1,31 @@
-import * as React from "react";
-import "./App.css";
+import React from 'react';
+import logo from './logo.svg';
+import { useSelector } from 'react-redux';
 import {
-  createPluginStore,
-  PluginProvider,
-  RendererPlugin
+    createPluginStore,
+    PluginProvider,
+    RendererPlugin,
+    PluginStore
 } from "react-pluggable";
-import AuthPlugin from "./plugins/AuthPlugin";
-import Root from "./components/Root";
-import { PluginStoreWithPlugins } from "./types";
-import TodoPlugin from "./plugins/TodoPlugin";
-import SephoraTestPlugin from "./plugins/SephoraTestPlugin";
-//import PluginManager from './plugins/PluginManager'
+import './App.css';
 
-const pluginStore: PluginStoreWithPlugins = createPluginStore();
-pluginStore.install(new RendererPlugin());
-pluginStore.install(new AuthPlugin());
-pluginStore.install(new TodoPlugin());
-pluginStore.install(new SephoraTestPlugin());
+import Root from "./components/Root";
+
+const pluginStore: PluginStore = createPluginStore();
+pluginStore.install(new RendererPlugin);
 
 
 function App() {
-  return (
-    <div>
-      <PluginProvider pluginStore={pluginStore}>
-        <Root />
-      </PluginProvider>
-    </div>
+
+    const state = useSelector((state: any) => state);
+    console.log("state", state);
+
+    return (
+        <PluginProvider pluginStore={pluginStore}>
+            <div className="App">
+                <Root/>
+            </div>
+        </PluginProvider>
   );
 }
 
